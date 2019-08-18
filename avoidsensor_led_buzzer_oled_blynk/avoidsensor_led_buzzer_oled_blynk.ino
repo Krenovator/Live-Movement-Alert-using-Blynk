@@ -17,10 +17,10 @@
  */
  
 /*the library for OLED display*/
-#include <SPI.h>
+/*#include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
+#include <Adafruit_SSD1306.h>*/
 
 #include <ESP8266WiFi.h>
 #include <BlynkSimpleEsp8266.h>
@@ -33,8 +33,8 @@ int ledG = D7;      //green LED
 
 int buzzer = D3;    //buzzer
 
-#define OLED_RESET LED_BUILTIN
-Adafruit_SSD1306 display(OLED_RESET);
+/*#define OLED_RESET LED_BUILTIN
+Adafruit_SSD1306 display(OLED_RESET);*/
 
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
@@ -49,11 +49,11 @@ WidgetLED red(V1);
 WidgetLED green(V2);
 
 void setup() {
-  display.clearDisplay();
+  //display.clearDisplay();
   
   Serial.begin(115200);
   
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
+  //display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
   
   //declaration for the pin
   pinMode(avoidpin, INPUT);
@@ -65,7 +65,7 @@ void setup() {
   Blynk.begin(auth, ssid, pass);
   
   // Clear the buffer/display
-  display.clearDisplay();
+  //display.clearDisplay();
 }
 
 void loop() {
@@ -74,10 +74,10 @@ void loop() {
   //condition used: if...else condition
   //HIGH = 1 or ON      LOW = 0 or OFF
   if(Sensor == LOW){
-    display.setTextColor(WHITE);
+    /*display.setTextColor(WHITE);
     display.setCursor(0, 0);
     display.setTextSize(2);
-    display.print("OBJECT");
+    display.print("OBJECT");*/
     
     digitalWrite(ledR, HIGH);
     digitalWrite(ledG, LOW);
@@ -89,10 +89,10 @@ void loop() {
     Blynk.email("YourEmail", "EmailSubject", "MessageYouWantToSend");
   }
   else{
-    display.setTextColor(WHITE);
+    /*display.setTextColor(WHITE);
     display.setCursor(0, 0);
     display.setTextSize(3);
-    display.print("No Object");
+    display.print("No Object");*/
     
     digitalWrite(ledR, LOW);
     digitalWrite(ledG, HIGH);
@@ -102,6 +102,6 @@ void loop() {
     green.on();
   }
   delay(2000);
-  display.clearDisplay();
+  //display.clearDisplay();
   Blynk.run();
 }
