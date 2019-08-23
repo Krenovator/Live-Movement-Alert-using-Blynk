@@ -49,7 +49,7 @@ WidgetLED red(V1);
 WidgetLED green(V2);
 
 void setup() {
-  //display.clearDisplay();
+  display.clearDisplay();
   
   Serial.begin(115200);
   
@@ -65,19 +65,21 @@ void setup() {
   Blynk.begin(auth, ssid, pass);
   
   // Clear the buffer/display
-  //display.clearDisplay();
+  display.clearDisplay();
 }
 
 void loop() {
   int Sensor = digitalRead(avoidpin);
+  
+  display.clearDisplay();
 
   //condition used: if...else condition
   //HIGH = 1 or ON      LOW = 0 or OFF
   if(Sensor == LOW){
-    /*display.setTextColor(WHITE);
+    display.setTextColor(WHITE);
     display.setCursor(0, 0);
     display.setTextSize(2);
-    display.print("OBJECT");*/
+    display.print("OBJECT!");
     
     digitalWrite(ledR, HIGH);
     digitalWrite(ledG, LOW);
@@ -89,10 +91,10 @@ void loop() {
     Blynk.email("YourEmail", "EmailSubject", "MessageYouWantToSend");
   }
   else{
-    /*display.setTextColor(WHITE);
+    display.setTextColor(WHITE);
     display.setCursor(0, 0);
-    display.setTextSize(3);
-    display.print("No Object");*/
+    display.setTextSize(2);
+    display.print("No Object");
     
     digitalWrite(ledR, LOW);
     digitalWrite(ledG, HIGH);
@@ -101,7 +103,7 @@ void loop() {
     red.off();
     green.on();
   }
-  delay(2000);
-  //display.clearDisplay();
+  display.display();
+  delay(1000);
   Blynk.run();
 }
