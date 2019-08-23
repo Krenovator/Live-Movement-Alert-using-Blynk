@@ -78,6 +78,6 @@ void loop() {
     digitalWrite(ledG, HIGH);
     digitalWrite(buzzer,LOW);
   }
-  delay(2000);
   display.display();
+  delay(2000);
 }
